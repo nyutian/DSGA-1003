@@ -1,2 +1,2 @@
 # DSGA-1003
-NYU DSGA 1003 Homework 
+This repo contains my own homework solutions to NYU DS-GA 1003.
