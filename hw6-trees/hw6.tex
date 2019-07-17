@@ -1,0 +1,448 @@
+%% LyX 2.3.0 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[ruled]{article}
+\usepackage{courier}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[letterpaper]{geometry}
+\geometry{verbose}
+\usepackage{color}
+\usepackage{url}
+\usepackage{algorithm2e}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[unicode=true,
+ bookmarks=false,
+ breaklinks=false,pdfborder={0 0 1},backref=section,colorlinks=true]
+ {hyperref}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\providecommand{\LyX}{\texorpdfstring%
+  {L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+  {LyX}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\newcommand{\code}[1]{\texttt{#1}}
+
+\@ifundefined{date}{}{\date{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\makeatother
+
+\begin{document}
+\global\long\def\reals{\mathbf{R}}
+ \global\long\def\integers{\mathbf{Z}}
+\global\long\def\naturals{\mathbf{N}}
+ \global\long\def\rationals{\mathbf{Q}}
+\global\long\def\ca{\mathcal{A}}
+\global\long\def\cb{\mathcal{B}}
+ \global\long\def\cc{\mathcal{C}}
+ \global\long\def\cd{\mathcal{D}}
+\global\long\def\ce{\mathcal{E}}
+\global\long\def\cf{\mathcal{F}}
+\global\long\def\cg{\mathcal{G}}
+\global\long\def\ch{\mathcal{H}}
+\global\long\def\ci{\mathcal{I}}
+\global\long\def\cj{\mathcal{J}}
+\global\long\def\ck{\mathcal{K}}
+\global\long\def\cl{\mathcal{L}}
+\global\long\def\cm{\mathcal{M}}
+\global\long\def\cn{\mathcal{N}}
+\global\long\def\co{\mathcal{O}}
+\global\long\def\cp{\mathcal{P}}
+\global\long\def\cq{\mathcal{Q}}
+\global\long\def\calr{\mathcal{R}}
+\global\long\def\cs{\mathcal{S}}
+\global\long\def\ct{\mathcal{T}}
+\global\long\def\cu{\mathcal{U}}
+\global\long\def\cv{\mathcal{V}}
+\global\long\def\cw{\mathcal{W}}
+\global\long\def\cx{\mathcal{X}}
+\global\long\def\cy{\mathcal{Y}}
+\global\long\def\cz{\mathcal{Z}}
+\global\long\def\ind#1{1(#1)}
+\global\long\def\pr{\mathbb{P}}
+
+\global\long\def\ex{\mathbb{E}}
+\global\long\def\var{\textrm{Var}}
+\global\long\def\cov{\textrm{Cov}}
+\global\long\def\sgn{\textrm{sgn}}
+\global\long\def\sign{\textrm{sign}}
+\global\long\def\kl{\textrm{KL}}
+\global\long\def\law{\mathcal{L}}
+\global\long\def\eps{\varepsilon}
+\global\long\def\convd{\stackrel{d}{\to}}
+\global\long\def\eqd{\stackrel{d}{=}}
+\global\long\def\del{\nabla}
+\global\long\def\loss{\ell}
+\global\long\def\tr{\operatorname{tr}}
+\global\long\def\trace{\operatorname{trace}}
+\global\long\def\diag{\text{diag}}
+\global\long\def\rank{\text{rank}}
+\global\long\def\linspan{\text{span}}
+\global\long\def\proj{\text{Proj}}
+\global\long\def\argmax{\operatornamewithlimits{arg\, max}}
+\global\long\def\argmin{\operatornamewithlimits{arg\, min}}
+\global\long\def\bfx{\mathbf{x}}
+\global\long\def\bfy{\mathbf{y}}
+\global\long\def\bfl{\mathbf{\lambda}}
+\global\long\def\bfm{\mathbf{\mu}}
+\global\long\def\calL{\mathcal{L}}
+\global\long\def\vw{\boldsymbol{w}}
+\global\long\def\vx{\boldsymbol{x}}
+\global\long\def\vxi{\boldsymbol{\xi}}
+\global\long\def\valpha{\boldsymbol{\alpha}}
+\global\long\def\vbeta{\boldsymbol{\beta}}
+\global\long\def\vsigma{\boldsymbol{\sigma}}
+\global\long\def\vmu{\boldsymbol{\mu}}
+\global\long\def\vtheta{\boldsymbol{\theta}}
+\global\long\def\vd{\boldsymbol{d}}
+\global\long\def\vs{\boldsymbol{s}}
+\global\long\def\vt{\boldsymbol{t}}
+\global\long\def\vh{\boldsymbol{h}}
+\global\long\def\ve{\boldsymbol{e}}
+\global\long\def\vf{\boldsymbol{f}}
+\global\long\def\vg{\boldsymbol{g}}
+\global\long\def\vz{\boldsymbol{z}}
+\global\long\def\vk{\boldsymbol{k}}
+\global\long\def\va{\boldsymbol{a}}
+\global\long\def\vb{\boldsymbol{b}}
+\global\long\def\vv{\boldsymbol{v}}
+\global\long\def\vy{\boldsymbol{y}}
+
+
+\title{Homework 6: Multiclass, Trees, and Gradient Boosting}
+
+\maketitle
+\textbf{Instructions}: Your answers to the questions below, including
+plots and mathematical work, should be submitted as a single PDF file.
+It's preferred that you write your answers using software that typesets
+mathematics (e.g. \LaTeX , \LyX , or MathJax via iPython), though
+if you need to you may scan handwritten work. You may find the \href{https://github.com/gpoore/minted}{minted}
+package convenient for including source code in your \LaTeX{} document.
+If you are using \LyX , then the \href{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}{listings}
+package tends to work better. 
+
+\section{Reformulations of Multiclass Hinge Loss}
+
+\subsection{Multiclass setting review}
+
+Consider the multiclass output space $\cy=\left\{ 1,\ldots,k\right\} $.
+Suppose we have a base hypothesis space \textbf{$\ch=\left\{ h:\cx\times\cy\to\reals\right\} $
+}from which we select a compatibility score function. Then our final
+multiclass hypothesis space is $\cf=\left\{ f(x)=\argmax_{y\in\cy}h(x,y)\mid h\in\ch\right\} $.
+Since functions in $\cf$ map into $\cy$, our action space $\ca$
+and output space $\cy$ are the same. Nevertheless, we will write
+our class-sensitive loss function as $\Delta:\cy\times\ca\to\reals$,
+even though $\cy=\ca$. We do this to indicate that the true class
+goes in the first slot of the function, while the prediction (i.e.
+the action) goes in the second slot. This is important because we
+do not assume that $\Delta(y,y')=\Delta(y',y)$. It would not be unusual
+to have this asymmetry in practice. For example, false alarms may
+be much less costly than no alarm when indeed something is going wrong.
+
+In the spirit of empirical risk minimization, we would like to find
+$f\in\cf$ minimizing the empirical cost-sensitive loss:
+\[
+\min_{f\in\cf}\sum_{i=1}^{n}\Delta\left(y_{i},f(x_{i})\right),
+\]
+possibly with some regularization. But this is clearly intractable,
+since we already know binary classification is intractable and that's
+a special case of this formulation. In lecture we proposed an alternative,
+tractable objective function: the multiclass SVM based on the convex
+multiclass hinge loss.
+
+\subsection{Two versions  of multiclass hinge loss (or generalized hinge loss)}
+
+In lecture, we defined the \textbf{margin} of the compatibility score
+function $h$ on the $i$th example $(x_{i},y_{i})$ for class $y$
+as
+\[
+m_{i,y}(h)=h(x_{i},y_{i})-h(x_{i},y).
+\]
+We also gave a formulation of a multiclass SVM objective function,
+where the loss on an individual example $\left(x_{i},y_{i}\right)$
+was
+
+\[
+\ell_{1}(h,(x_{i},y_{i}))=\max_{y\in\cy-\left\{ y_{i}\right\} }\left(\max\left[0,\Delta(y_{i},y)-m_{i,y}(h)\right]\right).
+\]
+There's an alternative formulation, called the \textbf{generalized
+hinge loss} in SSBD Section 17.2. There they define
+\[
+\ell_{2}(h,(x_{i,}y_{i}))=\max_{y\in\cy}\left[\Delta\left(y_{i},y\right)+h(x_{i},y)-h(x_{i},y_{i})\right].
+\]
+
+\begin{enumerate}
+\item Show that if $\Delta(y,y)=0$ for all $y\in\cy$, then $\ell_{2}\left(h,\left(x_{i},y_{i}\right)\right)=\text{\ensuremath{\ell}}_{1}(h,\left(x_{i},y_{i}\right))$.
+{[}Hint: Note that $\max_{y\in\cy}\phi(y)=\max\left(\phi(y_{i}),\max_{y\in\cy-\left\{ y_{i}\right\} }\phi(y_{i})\right)$.{]}
+
+\item In the context of the generalized hinge loss, we've said that $\Delta(y_{i},y)$
+is like the ``target margin'' between the score for true class $y_{i}$
+and the score for class $y$. Suppose that for our compatibility function
+$h$, all target margins are reached or exceeded on $x_{i}$. That
+is
+\[
+m_{i,y}(h)=h(x_{i},y_{i})-h(x_{i},y)\ge\Delta(y_{i},y),
+\]
+for all $y\in\cy-\left\{ y_{i}\right\} $. Assume that $\Delta(y_{i},y)>0$
+$\forall y\neq y_{i}$ and $\Delta(y_{i},y)=0$ for $y=y_{i}$. {]}
+\begin{enumerate}
+\item Show that under the conditions above, $\ell_{1}(h,(x_{i},y_{i}))=\ell_{2}(h,(x_{i},y_{i}))=0$.
+\item Show that under the conditions above, we make the correct prediction
+on $x_{i}$. That is, $f(x_{i})=\argmax_{y\in\cy}h(x_{i},y)=y_{i}$.
+\end{enumerate}
+\end{enumerate}
+
+\section{SGD for Multiclass Linear SVM}
+
+Suppose our output space and our action space are given as follows:
+$\cy=\ca=\left\{ 1,\ldots,k\right\} $. Given a non-negative class-sensitive
+loss function $\Delta:\cy\times\ca\to[0,\infty)$ and a class-sensitive
+feature mapping $\Psi:\cx\times\cy\to\reals^{d}$. Our prediction
+function $f:\cx\to\cy$ is given by
+\[
+f_{w}(x)=\argmax_{y\in\cy}\left\langle w,\Psi(x,y)\right\rangle 
+\]
+For training data $(x_{1},y_{1}),\ldots,(x_{n},y_{n})\in\cx\times\cy$,
+let $J(w)$ be the $\ell_{2}$-regularized empirical risk function
+for the multiclass hinge loss. We can write this as
+\[
+J(w)=\lambda\|w\|^{2}+\frac{1}{n}\sum_{i=1}^{n}\max_{y\in\cy}\left[\Delta\left(y_{i},y\right)+\left\langle w,\Psi(x_{i},y)-\Psi(x_{i},y_{i})\right\rangle \right],
+\]
+for some $\lambda>0$.
+\begin{enumerate}
+\item {[}Optional{]} Show that $J(w)$ is a convex function of $w$. You
+may use any of the rules about convex functions described in our \href{https://davidrosenberg.github.io/mlcourse/Notes/convex-optimization.pdf}{notes on Convex Optimization},
+in previous assignments, or in the Boyd and Vandenberghe book, though
+you should cite the general facts you are using. {[}Hint: If $f_{1},\ldots,f_{m}:\reals^{n}\to\reals$
+are convex, then their pointwise maximum $f(x)=\max\left\{ f_{1}(x),\ldots,f_{m}(x)\right\} $
+is also convex.{]}
+\item Since $J(w)$ is convex, it has a subgradient at every point. Give
+an expression for a subgradient of $J(w)$. You may use any standard
+results about subgradients, including the result from an earlier homework
+about subgradients of the pointwise maxima of functions. (Hint: It
+may be helpful to refer to $\hat{y}_{i}=\argmax_{y\in\cy}\left[\Delta\left(y_{i},y\right)+\left\langle w,\Psi(x_{i},y)-\Psi(x_{i},y_{i})\right\rangle \right]$.)
+\item Give an expression for the stochastic subgradient based on the point
+$(x_{i},y_{i})$.
+\item Give an expression for a minibatch subgradient, based on the points
+$(x_{i},y_{i}),\ldots,\left(x_{i+m-1},y_{i+m-1}\right)$. 
+\end{enumerate}
+
+\section{{[}Optional{]} Hinge Loss is a Special Case of Generalized Hinge
+Loss}
+
+Let $\cy=\left\{ -1,1\right\} $. Let $\Delta(y,\hat{y})=\ind{y\neq\hat{y}}.$
+If $g(x)$ is the score function in our binary classification setting,
+then define our compatibility function as 
+\begin{eqnarray*}
+h(x,1) & = & g(x)/2\\
+h(x,-1) & = & -g(x)/2.
+\end{eqnarray*}
+Show that for this choice of $h$, the multiclass hinge loss reduces
+to hinge loss: 
+\[
+\ell\left(h,\left(x,y\right)\right)=\max_{y'\in\cy}\left[\Delta\left(y,y')\right)+h(x,y')-h(x,y)\right]=\max\left\{ 0,1-yg(x)\right\} 
+\]
+
+
+\section{Multiclass Classification - Implementation}
+
+In this problem we will work on a simple three-class classification
+example, similar to the one \href{https://davidrosenberg.github.io/mlcourse/Archive/2017Fall/Lectures/11b.multiclass.pdf\#page=10}{given in lecture}.
+The data is generated and plotted for you in the skeleton code. 
+
+\subsection{One-vs-All (also known as One-vs-Rest)}
+
+In this problem we will implement one-vs-all multiclass classification.
+Our approach will assume we have a binary base classifier that returns
+a score, and we will predict the class that has the highest score. 
+\begin{enumerate}
+\item Complete the class OneVsAllClassifier in the skeleton code. Following
+the OneVsAllClassifier code is a cell that extracts the results of
+the fit and plots the decision region. Include these results in your
+submission.
+\end{enumerate}
+
+
+\subsection{Multiclass SVM}
+
+In this question, we will implement stochastic subgradient descent
+for the linear multiclass SVM, as described in lecture and in this
+problem set. We will use the class-sensitive feature mapping approach
+with the ``multivector construction'', as described in our \href{https://davidrosenberg.github.io/mlcourse/Archive/2017Fall/Lectures/11b.multiclass.pdf\#page=28}{multiclass classification lecture}
+and in SSBD Section 17.2.1. 
+\begin{enumerate}
+\item Complete the skeleton code for multiclass SVM. Following the multiclass
+SVM implementation, we have included another block of test code. Make
+sure to include the results from these tests in your assignment, along
+with your code. 
+\end{enumerate}
+
+\section{{[}Optional{]} Audio Classification}
+
+In this problem, we will work on the urban sound dataset \href{https://serv.cusp.nyu.edu/projects/urbansounddataset/urbansound8k.html}{URBANSOUND8K}
+from the Center for Urban Science and Progress (CUSP) at NYU. (You
+should download the data from that link.) We will first extract features
+from raw audio data using the \href{https://github.com/librosa/librosa}{LibROSA}
+package, and then we will train multiclass classifiers to classify
+the sounds into 10 sound classes. URBANSOUND8K dataset contains 8732
+labeled sound excerpts broken into 10 folds. Use folds 1 and 2 for
+training, and folds 3 and 4 for validation.
+\begin{enumerate}
+\item In LibROSA, there are many functions for visualizing audio waves and
+spectra, such as display.waveplot() and display.specshow(). Load a
+random audio file from each class as a floating point time series
+with librosa.load(), and plot their waves and \href{https://librosa.github.io/librosa/generated/librosa.display.specshow.html}{linear-frequency power spectrogram}.
+If you are interested, you can also play the audio in the notebook
+with functions display() and Audio() in IPython.display. 
+\item \href{https://en.wikipedia.org/wiki/Mel-frequency_cepstrum}{Mel-frequency cepstral coefficients (MFCC)}
+are a commonly used feature for sound processing. We will use MFCC
+and its first and second differences (like discrete derivatives) as
+our features for classfication. First, use function feature.mfcc()
+from LibROSA to extract MFCC features from each audio sample. (The
+first MFCC coefficient is typically discarded in sound analysis, but
+you do not need to. You can test whether this helps in the optional
+problem below.) Next, use function feature.delta() to calculate the
+first and second differences of MFCC. Finally, combine these features
+and normalize each feature to zero mean and unit variance.
+\item Train a linear multiclass SVM on your training set. Evaluate your
+results on the validation set in terms of 0/1 error and generate a
+confusion table. Compare the results to a one-vs-all classifier using
+a binary linear SVM as the base classifier. For each model, may use
+your code from the previous problem, or you may use another implementation
+(e.g. from sklearn). 
+\item {[}More Optional{]} Compare results to any other multiclass classification
+methods of your choice. 
+\item {[}More Optional{]} Try different feature sets and see how they affect
+performance.
+\end{enumerate}
+
+\section{{[}Optional{]} Decision Tree Implementation}
+
+In this problem we'll implement decision trees for both classification
+and regression. The strategy will be to implement a generic class,
+called \code{Decision\_Tree}, which we'll supply with the loss function
+we want to use to make node splitting decisions, as well as the estimator
+we'll use to come up with the prediction associated with each leaf
+node. For classification, this prediction could be a vector of probabilities,
+but for simplicity we'll just consider hard classifications here.
+We'll work with the classification and regression data sets from previous
+assignments.
+\begin{enumerate}
+\item {[}Optional{]} Complete the class \code{Decision\_Tree}, given in
+the skeleton code. The intended implementation is as follows: Each
+object of type \code{Decision\_Tree} represents a single node of
+the tree. The depth of that node is represented by the variable self.depth,
+with the root node having depth 0. The main job of the fit function
+is to decide, given the data provided, how to split the node or whether
+it should remain a leaf node. If the node will split, then the splitting
+feature and splitting value are recorded, and the left and right subtrees
+are fit on the relevant portions of the data. Thus tree-building is
+a recursive procedure. We should have as many\code{Decision\_Tree}
+objects as there are nodes in the tree. We will not implement pruning\textbf{
+}here. Some additional details are given in the skeleton code. 
+\item {[}Optional{]} Complete either the \code{compute\_entropy} or \code{compute\_gini}
+functions. Run the code provided that builds trees for the two-dimensional
+classification data. Include the results. For debugging, you may want
+to compare results with sklearn's decision tree. For visualization,
+you'll need to install \code{graphviz}.
+\item {[}Optional{]} Complete the function \code{mean\_absolute\_deviation\_around\_median}
+(MAE). Use the code provided to fit the \code{Regression\_Tree} to
+the krr dataset using both the MAE loss and median predictions. Include
+the plots for the 6 fits.
+\end{enumerate}
+
+\section{Gradient Boosting Machines}
+
+Recall the general gradient boosting algorithm\footnote{Besides the lecture slides, you can find an accessible discussion
+of this approach in \url{http://www.saedsayad.com/docs/gbm2.pdf},
+in one of the original references \url{http://statweb.stanford.edu/~jhf/ftp/trebst.pdf},
+and in this review paper \url{http://web.stanford.edu/~hastie/Papers/buehlmann.pdf}. }, for a given loss function $\ell$ and a hypothesis space $\cf$
+of regression functions (i.e. functions mapping from the input space
+to $\reals$): 
+\begin{enumerate}
+\item Initialize $f_{0}(x)=0$. 
+\item For $m=1$ to $M$:
+
+\begin{enumerate}
+\item Compute: 
+\[
+{\bf g}_{m}=\left(\left.\frac{\partial}{\partial f(x_{j})}\sum_{i=1}^{n}\ell\left(y_{i},f(x_{i})\right)\right|_{f(x_{i})=f_{m-1}(x_{i}),\,i=1,\ldots,n}\right)_{j=1}^{n}
+\]
+\item Fit regression model to $-{\bf g}_{m}$: 
+\[
+h_{m}=\argmin_{h\in\cf}\sum_{i=1}^{n}\left(\left(-{\bf g}_{m}\right)_{i}-h(x_{i})\right)^{2}.
+\]
+\item Choose fixed step size $\nu_{m}=\nu\in(0,1]$, or take 
+\[
+\nu_{m}=\argmin_{\nu>0}\sum_{i=1}^{n}\ell\left(y_{i},f_{m-1}(x_{i})+\nu h_{m}(x_{i})\right).
+\]
+\item Take the step: 
+\[
+f_{m}(x)=f_{m-1}(x)+\nu_{m}h_{m}(x)
+\]
+\end{enumerate}
+\item Return $f_{M}$. 
+\end{enumerate}
+In this problem we'll derive two special cases of the general gradient
+boosting framework: $\ell_{2}$-Boosting and BinomialBoost. 
+\begin{enumerate}
+\item Consider the regression framework, where $\cy=\reals$. Suppose our
+loss function is given by 
+\[
+\ell(\hat{y},y)=\frac{1}{2}\left(\hat{y}-y\right)^{2},
+\]
+and at the beginning of the $m$'th round of gradient boosting, we
+have the function $f_{m-1}(x)$. Show that the $h_{m}$ chosen as
+the next basis function is given by 
+\[
+h_{m}=\argmin_{h\in\cf}\sum_{i=1}^{n}\left[\left(y_{i}-f_{m-1}(x_{i})\right)-h(x_{i})\right]^{2}.
+\]
+In other words, at each stage we find the base prediction function
+$h_{m}\in\cf$ that is the best fit to the residuals from the previous
+stage. {[}Hint: Once you understand what's going on, this is a pretty
+easy problem.{]} 
+\item Now let's consider the classification framework, where $\cy=\left\{ -1,1\right\} $.
+In lecture, we noted that AdaBoost corresponds to forward stagewise
+additive modeling with the exponential loss, and that the exponential
+loss is not very robust to outliers (i.e. outliers can have a large
+effect on the final prediction function). Instead, let's consider
+the logistic loss 
+\[
+\ell(m)=\ln\left(1+e^{-m}\right),
+\]
+where $m=yf(x)$ is the margin. Similar to what we did in the $\ell_{2}$-Boosting
+question, write an expression for $h_{m}$ as an argmin over $\cf$.
+\end{enumerate}
+
+
+\section{Gradient Boosting Implementation}
+
+This method goes by many names, including gradient boosting machines
+(GBM), generalized boosting models (GBM), AnyBoost, and gradient boosted
+regression trees (GBRT), among others. Although one of the nice aspects
+of gradient boosting is that it can be applied to any problem with
+a subdifferentiable loss function, here we'll keep things simple and
+consider the standard regression setting with square loss. 
+\begin{enumerate}
+\item Complete the \code{gradient\_boosting} class. As the base regression
+algorithm, you may use sklearn's regression tree. You should use
+the square loss for the tree splitting rule and the mean function
+for the leaf prediction rule. Run the code provided to build gradient
+boosting models on the classification and regression data sets, and
+include the plots generated. Note that we are using square loss to
+fit the classification data, as well as the regression data.
+\item {[}Optional{]} Repeat the previous runs on the classification data
+set, but use a different classification loss, such as logistic loss
+or hinge loss. Include the new code and plots of your results. Note
+that you should still use the same regression tree settings for the
+base regression algorithm. 
+\end{enumerate}
+
+\end{document}

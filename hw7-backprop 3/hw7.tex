@@ -1,0 +1,413 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[ruled]{article}
+\usepackage{courier}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[letterpaper]{geometry}
+\geometry{verbose}
+\usepackage{color}
+\usepackage{algorithm2e}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[unicode=true,
+ bookmarks=false,
+ breaklinks=false,pdfborder={0 0 1},backref=section,colorlinks=true]
+ {hyperref}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\providecommand{\LyX}{\texorpdfstring%
+  {L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+  {LyX}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+ \newcommand{\code}[1]{\texttt{#1}}
+
+\@ifundefined{date}{}{\date{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\makeatother
+
+\usepackage{listings}
+\lstset{backgroundcolor={\color{white}},
+basicstyle={\footnotesize\ttfamily},
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+commentstyle={\color{mygreen}},
+deletekeywords={...},
+escapeinside={*@}{@*},
+extendedchars=true,
+frame=shadowbox,
+keepspaces=true,
+keywordstyle={\color{blue}},
+language=Python,
+morekeywords={*,...},
+numbers=left,
+numbersep=5pt,
+numberstyle={\tiny\color{mygray}},
+rulecolor={\color{black}},
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+stepnumber=1,
+stringstyle={\color{mymauve}},
+tabsize=2}
+\begin{document}
+\global\long\def\reals{\mathbf{R}}
+ \global\long\def\integers{\mathbf{Z}}
+\global\long\def\naturals{\mathbf{N}}
+ \global\long\def\rationals{\mathbf{Q}}
+\global\long\def\ca{\mathcal{A}}
+\global\long\def\cb{\mathcal{B}}
+ \global\long\def\cc{\mathcal{C}}
+ \global\long\def\cd{\mathcal{D}}
+\global\long\def\ce{\mathcal{E}}
+\global\long\def\cf{\mathcal{F}}
+\global\long\def\cg{\mathcal{G}}
+\global\long\def\ch{\mathcal{H}}
+\global\long\def\ci{\mathcal{I}}
+\global\long\def\cj{\mathcal{J}}
+\global\long\def\ck{\mathcal{K}}
+\global\long\def\cl{\mathcal{L}}
+\global\long\def\cm{\mathcal{M}}
+\global\long\def\cn{\mathcal{N}}
+\global\long\def\co{\mathcal{O}}
+\global\long\def\cp{\mathcal{P}}
+\global\long\def\cq{\mathcal{Q}}
+\global\long\def\calr{\mathcal{R}}
+\global\long\def\cs{\mathcal{S}}
+\global\long\def\ct{\mathcal{T}}
+\global\long\def\cu{\mathcal{U}}
+\global\long\def\cv{\mathcal{V}}
+\global\long\def\cw{\mathcal{W}}
+\global\long\def\cx{\mathcal{X}}
+\global\long\def\cy{\mathcal{Y}}
+\global\long\def\cz{\mathcal{Z}}
+\global\long\def\ind#1{1(#1)}
+\global\long\def\pr{\mathbb{P}}
+
+\global\long\def\ex{\mathbb{E}}
+\global\long\def\var{\textrm{Var}}
+\global\long\def\cov{\textrm{Cov}}
+\global\long\def\sgn{\textrm{sgn}}
+\global\long\def\sign{\textrm{sign}}
+\global\long\def\kl{\textrm{KL}}
+\global\long\def\law{\mathcal{L}}
+\global\long\def\eps{\varepsilon}
+\global\long\def\convd{\stackrel{d}{\to}}
+\global\long\def\eqd{\stackrel{d}{=}}
+\global\long\def\del{\nabla}
+\global\long\def\loss{\ell}
+\global\long\def\tr{\operatorname{tr}}
+\global\long\def\trace{\operatorname{trace}}
+\global\long\def\diag{\text{diag}}
+\global\long\def\rank{\text{rank}}
+\global\long\def\linspan{\text{span}}
+\global\long\def\proj{\text{Proj}}
+\global\long\def\argmax{\operatornamewithlimits{arg\, max}}
+\global\long\def\argmin{\operatornamewithlimits{arg\, min}}
+\global\long\def\bfx{\mathbf{x}}
+\global\long\def\bfy{\mathbf{y}}
+\global\long\def\bfl{\mathbf{\lambda}}
+\global\long\def\bfm{\mathbf{\mu}}
+\global\long\def\calL{\mathcal{L}}
+\global\long\def\vw{\boldsymbol{w}}
+\global\long\def\vx{\boldsymbol{x}}
+\global\long\def\vxi{\boldsymbol{\xi}}
+\global\long\def\valpha{\boldsymbol{\alpha}}
+\global\long\def\vbeta{\boldsymbol{\beta}}
+\global\long\def\vsigma{\boldsymbol{\sigma}}
+\global\long\def\vmu{\boldsymbol{\mu}}
+\global\long\def\vtheta{\boldsymbol{\theta}}
+\global\long\def\vd{\boldsymbol{d}}
+\global\long\def\vs{\boldsymbol{s}}
+\global\long\def\vt{\boldsymbol{t}}
+\global\long\def\vh{\boldsymbol{h}}
+\global\long\def\ve{\boldsymbol{e}}
+\global\long\def\vf{\boldsymbol{f}}
+\global\long\def\vg{\boldsymbol{g}}
+\global\long\def\vz{\boldsymbol{z}}
+\global\long\def\vk{\boldsymbol{k}}
+\global\long\def\va{\boldsymbol{a}}
+\global\long\def\vb{\boldsymbol{b}}
+\global\long\def\vv{\boldsymbol{v}}
+\global\long\def\vy{\boldsymbol{y}}
+
+\title{Homework 7: Computation Graphs, Backpropagation, and Neural Networks}
+
+\maketitle
+\textbf{Instructions}: Your answers to the questions below, including
+plots and mathematical work, should be submitted as a single PDF file.
+It's preferred that you write your answers using software that typesets
+mathematics (e.g. \LaTeX{}, \LyX{}, or MathJax via iPython), though
+if you need to you may scan handwritten work. You may find the \href{https://github.com/gpoore/minted}{minted}
+package convenient for including source code in your \LaTeX{} document.
+If you are using \LyX{}, then the \href{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}{listings}
+package tends to work better.
+
+\section{Introduction}
+
+There is no doubt that neural networks are a very important class
+of machine learning models. Given the sheer number of people who are
+achieving impressive results with neural networks, one might think
+that it's relatively easy to get them working. This is a partly an
+illusion. The reason so many people have success is that, thanks to
+GitHub, they can copy the exact settings that others have used to
+achieve success. It's far easier to tweak and improve a working system
+than to get one working from scratch. If you create a new model, you're
+kind of on your own to figure out how to get it working: there's not
+much theory to guide you and the rules of thumb and suggestions do
+not always work. Understanding even the most basic questions, such
+as the preferred variant of SGD to use for optimization, is still
+a very active area of research.
+
+One thing is clear, however: If you do need to start from scratch,
+or debug a neural network model that doesn't seem to be learning,
+it can be immensely helpful to understand the low-level details of
+how your neural network is implemented. With this assignment, you'll
+have an opportunity to linger on these low-level implementation details,
+which one usually rushes through in more specialized neural network
+classes. Every major neural network type (RNNs, CNNs, Resnets, etc)
+can be implemented using the basic building blocks we'll develop in
+this assignment.
+
+To help things along, we\footnote{Philipp Meerkamp, Pierre Garapon, and David Rosenberg}
+have designed a minimal framework for computation graphs, and put
+together some support code. The intent is for you to read, or at least
+skim, every line of code provided, so that you'll know you understand
+all the crucial components and could, in theory, create your own from
+scratch. In fact, creating your own computation graph framework from
+scratch is highly encouraged \textendash{} you'll learn a lot. 
+
+\section{Computation Graph Framework }
+
+To get started, please read the \href{https://github.com/davidrosenberg/mlcourse/blob/gh-pages/Notebooks/computation-graph/computation-graph-framework.ipynb}{tutorial}
+on the computation graph framework we'll be working with. (Note that
+it renders better if you view it locally.) In some sense, computation
+graphs have nothing to do with machine learning or neural networks.
+They are just a way to represent a function that facilitates efficient
+computation of the function value and it's gradients with respect
+to inputs. The tutorial takes this perspective, and there is very
+little about machine learning per se. 
+
+To see how the framework can be used for machine learning tasks, we've
+provided a full implementation of linear regression. You should start
+by working your way through the \code{\_\_init\_\_} of the \code{LinearRegression}
+class in \code{linear\_regression.py}. From there, you'll want to
+review the node class definitions in \code{nodes.py}, and finally
+the class \code{ComputationGraphFunction} in \code{graph.py}. \code{ComputationGraphFunction}
+is where we repackage a raw computation graph into something that's
+more friendly to work with for machine learning. The rest of \code{linear\_regression.py}
+is fairly routine, but it illustrates how to interact with the \code{ComputationGraphFunction}.
+
+As we've noted earlier in the course, getting gradient calculations
+correct can be difficult. To help things along, we've provided two
+functions that can be used to test the backward method of a node,
+and the overall gradient calculation of a \code{ComputationGraphFunction}.
+The functions are in \code{test\_utils.py}, and it's recommended
+that you review the tests provided for the linear regression implementation
+in \code{linear\_regression.t.py}. (You can run these tests from
+the command line with \code{python3 linear\_regression.t.py.}) The
+functions actually doing the testing, \code{test\_node\_backward}
+\code{test\_ComputationGraphFunction} are a bit intricate so they
+can work with any node or ComputationGraphFunction, but it's using
+the exact same gradient\_checker logic we saw in the first homework
+assignment.
+
+Once you've understood how linear regression works in our framework,
+you're ready to start implementing your own algorithms...
+
+\section{Ridge Regression}
+
+When moving to a new system, it's always good to start with something
+familiar. But that's not the only reason we're doing ridge regression
+in this homework. As we discussed in class, in ridge regression, the
+parameter vector is ``shared'', in the sense that it's used twice
+in the objective function. In the computation graph, this can be seen
+in the fact that the node for the parameter vector has two outgoing
+edges. While we don't have this sharing in the multilayer perceptron,
+we do have it in RNNs and CNNs, the two neural network architectures
+that have had the most impact. So being able to handle ridge regression
+is a necessary condition (and possibly sufficient) for being able
+to represent the these important architectures.
+
+We've provided some skeleton code in ridge\_regression.py, and some
+test code in ridge\_regression.t.py, that you should eventually be
+able to pass.
+\begin{enumerate}
+\item Complete the class \code{L2NormPenaltyNode} in \code{nodes.py}.
+\item Complete the class \code{SumNode} in \code{nodes.py}.
+\item Implement ridge regression with $w$ regularized and $b$ unregularized.
+Do this by completing the \code{\_\_init\_\_} method in the \code{ridge\_regression.py},
+using the classes created above. When complete, you should be able
+to pass the tests in \code{ridge\_regression.t.py}. Report the average
+square error on the \textbf{training} set for the parameter settings
+given in the \code{main()} function.
+\item {[}Optional{]} Create a new implementation of ridge regression that
+supports efficient minibatching. You will replace the the \code{ValueNode x},
+which contains a vector, with a \code{ValueNode X}, which contains
+a matrix. The convention is that the first dimension indexes examples
+and the second is features (as we have always done). Many of the nodes
+will have to be adapted to this use case. Demonstrate its use and
+speedup.
+\end{enumerate}
+
+\section{Multilayer Perceptron}
+
+In this problem, we'll be implement a multilayer perceptron, with
+a single hidden layer, for the regression setting. We'll implement
+the computation graph illustrated below:
+\begin{center}
+\includegraphics{figures/MLP-computation-graph}
+\par\end{center}
+
+The crucial new piece here is the nonlinear \textbf{hidden layer},
+which is what makes the multilayer perceptron a significantly larger
+hypothesis space than linear prediction functions.
+
+\subsection{The standard non-linear layer}
+
+The multilayer perceptron consists of a sequence of ``layers'' implementing
+the following non-linear function
+\[
+h(x)=\sigma\left(Wx+b\right),
+\]
+where $x\in\reals^{d}$, $W\in\reals^{m\times d},$ and $b\in\reals^{m}$,
+and where $m$ is often referred to as the \textbf{number of hidden
+units }or\textbf{ hidden nodes}. $\sigma$ is some non-linear function,
+typically $\tanh$ or ReLU applied element-wise to the argument of
+$\sigma$. Referring to the computation graph illustration above,
+we will implement this nonlinear layer with two nodes, one implementing
+the affine transform $L(x)=W_{1}x+b_{1}$, and the other implementing
+the nonlinear function $h(L)=\tanh(L)$. In this problem we'll work
+out how to implement the backward method for each of these nodes.
+
+\subsubsection{The Affine Transformation}
+
+In a general neural network, there may be quite a lot of computation
+between any given affine transformation $Wx+b$ and the final objective
+function value $J$. We will capture all of that in a function $f:\reals^{m}\to\reals$,
+for which $J=f(Wx+b)$. Our goal is to find the partial derivative
+of $J$ with respect to each element of $W$, namely $\partial J/\partial W_{ij}$.
+For convenience, let $y=Wx+b$, so we can write $J=f(y)$. Suppose
+we have already computed the partial derivatives of $J$ with respect
+to the intermediate variable $y=\left(y_{1},\ldots,y_{m}\right)^{T}$,
+namely $\frac{\partial J}{\partial y_{i}}$ for $i=1,\ldots,m$. Then
+by the chain rule, we have
+\[
+\frac{\partial J}{\partial W_{ij}}=\sum_{r=1}^{m}\frac{\partial J}{\partial y_{r}}\frac{\partial y_{r}}{\partial W_{ij}}.
+\]
+\begin{enumerate}
+\item Show that $\frac{\partial J}{\partial W_{ij}}=\frac{\partial J}{\partial y_{i}}x_{j}$,
+where $x=\left(x_{1},\ldots,x_{d}\right)^{T}$. {[}Hint: Although
+not necessary, you might find it helpful to use the notation $\delta_{ij}=\begin{cases}
+1 & i=j\\
+0 & \text{else}
+\end{cases}$. So, for examples, $\partial_{x_{j}}\left(\sum_{i=1}^{n}x_{i}^{2}\right)=2x_{i}\delta_{ij}=2x_{j}$.{]}
+\item Now let's vectorize this. Let's write $\frac{\partial J}{\partial y}\in\reals^{m\times1}$
+for the column vector whose $i$th entry is $\frac{\partial J}{\partial y_{i}}$.
+Let's also define the matrix $\frac{\partial J}{\partial W}\in\reals^{m\times d}$,
+whose $ij$'th entry is $\frac{\partial J}{\partial W_{ij}}$. Generally
+speaking, we'll always take $\frac{\partial J}{\partial A}$ to be
+an array of the same size (``shape'' in numpy) as $A$. Give a vectorized
+expression for $\frac{\partial J}{\partial W}$ in terms of the column
+vectors $\frac{\partial J}{\partial y}$ and $x$. {[}Hint: Outer
+product.{]} 
+\item In the usual way, define $\frac{\partial J}{\partial x}\in\reals^{d}$,
+whose $i$'th entry is $\frac{\partial J}{\partial x_{i}}$. Show
+that 
+\[
+\frac{\partial J}{\partial x}=W^{T}\left(\frac{\partial J}{\partial y}\right)
+\]
+{[}Note, if $x$ is just data, technically we won't need this derivative.
+However, in a multilayer perceptron, $x$ may actually be the output
+of a previous hidden layer, in which case we will need to propagate
+the derivative through $x$ as well.{]}
+\item Show that $\frac{\partial J}{\partial b}=\frac{\partial J}{\partial y}$,
+where $\frac{\partial J}{\partial b}$ is defined in the usual way.
+\end{enumerate}
+
+\subsubsection{Element-wise Transformers}
+
+Our nonlinear activation function nodes take an array (e.g. a vector,
+matrix, higher-order tensor, etc), and apply the same nonlinear transformation
+$\sigma:\reals\to\reals$ to every element of the array. Let's abuse
+notation a bit (as is usually done in this context), and write $\sigma(A)$
+for the array that results from applying $\sigma(\cdot)$ to each
+element of $A$. If $\sigma$ is differentiable at $x\in\reals$,
+then we'll write $\sigma'(x)$ for the derivative of $\sigma$ at
+$x$, with $\sigma'(A)$ defined analogously to $\sigma(A)$.
+
+Suppose the objective function value $J$ is written as $J=f(\sigma(A))$,
+for some function $f:S\mapsto\reals$, where $S$ is an array of the
+same dimensions as $\sigma(A)$ and $A$. As before, we want to find
+the array $\frac{\partial J}{\partial A}$ for any $A$. Suppose for
+some $A$ we have already computed the array $\frac{\partial J}{\partial S}=\frac{\partial f(S)}{\partial S}$
+for $S=\sigma(A)$. At this point we'll want to use the chain rule
+to figure out $\frac{\partial J}{\partial A}$. However, because we're
+dealing with arrays of arbitrary shapes, it can be tricky to write
+down the chain rule. Appropriately, we'll use a tricky convention:
+We'll assume all entries of an array $A$ are indexed by a single
+variable. So, for example, to sum over all entries of an array $A$,
+we'll just write $\sum_{i}A_{i}$. 
+\begin{enumerate}
+\item Show that $\frac{\partial J}{\partial A}=\frac{\partial J}{\partial S}\odot\sigma'(A)$,
+where we're using $\odot$ to represent the \textbf{Hadamard product}.
+If $A$ and $B$ are arrays of the same shape, then their Hadamard
+product $A\odot B$ is an array with the same shape as $A$ and $B$,
+and for which $\left(A\odot B\right)_{i}=A_{i}B_{i}$. That is, it's
+just the array formed by multiplying corresponding elements of $A$
+and $B$. Conveniently, in \code{numpy} if \code{A} and \code{B}
+are arrays of the same shape, then \code{A{*}B} is their Hadamard
+product. 
+\end{enumerate}
+
+\subsection{MLP Implementation}
+\begin{enumerate}
+\item Complete the class \code{AffineNode} in \code{nodes.py}. Be sure
+to propagate the gradient with respect to $x$ as well, since when
+we stack these layers, $x$ will itself be the output of another node
+that depends on our optimization parameters.
+\item Complete the class \code{TanhNode} in \code{nodes.py}. As you'll
+recall, $\frac{d}{dx}\tanh(x)=1-\tanh^{2}x$. Note that in the forward
+pass, we'll already have computed $\tanh$ of the input and stored
+it in self.out. So make sure to use \code{self.out} and not recalculate
+it in the backward pass.
+\item Implement an MLP by completing the skeleton code in \code{mlp\_regression.py},
+and making use of the nodes above. Your code should pass the tests
+provided in \code{mlp\_regression.t.py}. Note that to break the symmetry
+of the problem, we initialize our weights to small random values,
+rather than all zeros, as we often do for convex optimization problems.
+Run the MLP for the two settings given in the \code{main()} function
+and report the average \textbf{training} error. Note that with an
+MLP, we can take the original scalar as input, in the hopes that it
+will learn nonlinear features on its own, using the hidden layers.
+In practice, it is quite challenging to get such a neural network
+to fit as well as one where we provide features. 
+\item {[}Optional{]} See if you can get a fit on the training set with an
+MLP that uses just the scalar input that is about as good as the fit
+using the featurized inputs. You can do that by tweaking model parameters
+(e.g. the number of hidden nodes or layers) and/or the parameters
+of optimization. You \textbf{may use} any neural network framework
+(PyTorch, TensorFlow, etc), which can help by providing more advanced
+optimization techniques (e.g. Adam), variable initialization methods,
+and/or various normalization approaches (batch norm, etc). 
+\end{enumerate}
+
+\subsection{{[}OPTIONAL\}}
+\begin{enumerate}
+\item {[}Optional{]} Implement a Softmax node.
+\item {[}Optional{]} Implement a negative log-likelihood loss node for multiclass
+classification.
+\item {[}Optional{]} Use the classes above to apply an MLP to the simple
+multiclass classification dataset we had on a previous assignment.
+\end{enumerate}
+
+\end{document}
